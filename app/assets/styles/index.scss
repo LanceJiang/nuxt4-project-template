@@ -1,0 +1,262 @@
+@use "./reset.scss";
+//@import 'element-plus/dist/index.css';
+html,
+body {
+	font-size: $rootValue + px;
+	/*--el-font-family: "Helvetica Neue", Helvetica, "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", "微软雅黑", Arial, sans-serif, "Inter";
+	font-family: var(--el-font-family);*/
+}
+
+// 解决 锚点位置被头部导航挡住部分内容的问题
+html {
+	scroll-padding-top: 6rem;
+}
+
+// 全局滚动条样式
+::-webkit-scrollbar{width:6px;height:6px}
+::-webkit-scrollbar-track{border-radius:6px;background: rgb(0 0 0 / 5%);}
+::-webkit-scrollbar-track:hover{background-color:rgba(0,0,0,0.06);box-shadow:0 0 0 #fff inset,0 0 0 rgba(255,255,255,0.9) inset,0 0 0 rgba(255,255,255,0.9) inset,0 0 0 rgba(255,255,255,0.9) inset}
+::-webkit-scrollbar-track:active{background-color:rgba(0,0,0,0.1)}
+::-webkit-scrollbar-thumb{border-radius:6px;background-color:rgba(0,0,0,0.1);box-shadow:0 0 0 #fff inset,0 0 0 #fff inset,0 0 0 rgba(255,255,255,0.9) inset,0 0 0 rgba(255,255,255,0.9) inset}
+::-webkit-scrollbar-thumb:hover{background-color:rgba(0,0,0,0.4)}
+::-webkit-scrollbar-thumb:active{background:rgba(0,0,0,0.6)}
+
+.app-wrap {
+	&.light {
+		--el-color-primary: #3054E5;
+		//--el-input-border-color: #EDEBE9;
+		--layout-background-color: #f4f5f5; // 布局背景颜色
+		--primary-color: #000; // 主要的字体颜色
+		--secondary-color: #212121; // 次一级字体颜色，例如：文章描述
+		--primary-background-color: #ffffff; // 主要的背景色
+		--navbar-background-color: #ffffff; // navbar组件的背景色
+		--juejin-color-nav-title: #515767; // navbar组件字体颜色
+		--link-color: #3054E5; // 链接 hover 上去的颜色
+		--link-color-3: #5673e3;
+		--article-title-color: #000; // 文章标题字体颜色
+		--article-desc-color: #86909c; // 文章描述字体颜色
+		--article-hover-bg: #fafafa; // 文章hover背景颜色
+		--border-line-color: #9797971a; // 边框颜色
+		--juejin-gray-3: #f7f8fa;
+		--juejin-brand-5-light: #eaf2ff;
+		--juejin-font-3: #8a919f;
+		--juejin-gray-1-2: rgba(228, 230, 235, 0.5);
+	}
+	&.dark {
+		--layout-background-color: #000;
+		--primary-color: #ffffff;
+		--secondary-color: #f9f9f999;
+		--primary-background-color: #0e0e0e;
+		--navbar-background-color: #272727;
+		--juejin-color-nav-title: #e3e3e3;
+		--link-color: #34a8eb;
+		--link-color-3: #52aee3;
+		--article-title-color: #e3e3e3;
+		--article-desc-color: #a9a9a9;
+		--article-hover-bg: #3a3a3a;
+		--border-line-color: #9797971a;
+		--juejin-gray-3: #f7f8fa;
+		--juejin-brand-5-light: #eaf2ff;
+		--juejin-font-3: #8a919f;
+		--juejin-gray-1-2: rgba(228, 230, 235, 0.5);
+	}
+	// 兼容手机端
+	&.app-mobile {
+		.common-inner-auto {
+			max-width: mx2vw(343px);
+			padding: 0;
+		}
+		/*.part-title {
+            font-size: mx2vw(24px);
+            padding-top: mx2vw(50px);
+            padding-bottom: mx2vw(26px);
+        }*/
+		/*.sign-bar {
+            width: 100%;
+            height: mx2vw(128px);
+            margin-top: mx2vw(36px);
+            background: url('@/assets/image/sign_bar_m_blue.webp') no-repeat top center;
+            background-size: 100% 100%;
+            padding: mx2vw(18px) 0;
+            .box {
+                //display: flex;
+                flex-direction: column;
+                //align-items: center;
+                width: mx2vw(343px);
+                //width: 100%;
+                height: mx2vw(92px);
+                padding: mx2vw(10px) 0;
+                border-radius: mx2vw(6px) mx2vw(30px);
+            }
+            .desc {
+                //color: #fff;
+                //text-align: center;
+                font-size: mx2vw(16px);
+                line-height: mx2vw(22px);
+                margin-bottom: mx2vw(10px);
+            }
+            .btn {
+                //position: unset;
+                width: mx2vw(156px);
+                height: mx2vw(40px);
+                font-size: mx2vw(14px);
+                border-radius: mx2vw(6px);
+                //color: #0A166D;
+            }
+            &.sign-bar {
+                &--blue {}
+                &--green {
+                    background-image: url('@/assets/image/sign_bar_m_green.webp');
+                }
+                &--red {
+                    background-image: url('@/assets/image/sign_bar_m_red.webp');
+                }
+                &--yellow {
+                    background-image: url('@/assets/image/sign_bar_m_yellow.webp');
+                }
+            }
+        }*/
+		/*.mobile\:hidden {
+            display: none !important;
+        }*/
+	}
+	// 兼容pc
+	&.app-pc {
+		/*.sign-bar {
+        }*/
+		/*.pc\:hidden {
+            display: none !important;
+        }*/
+	}
+	color: var(--primary-color);
+	background: var(--layout-background-color);
+	min-height: 100vh;
+}
+
+.common-inner-auto {
+	margin: 0 auto;
+	//width: 1320px;
+	max-width: 1340px;
+	padding: 0 10px;
+	//max-width: px2vw(1340px);
+	//padding: 0 px2vw(10px);
+}
+// 超出隐藏样式1
+.text-ellipsis {
+	overflow: hidden;
+	text-overflow: ellipsis;
+	white-space: nowrap;
+}
+
+// 超出隐藏样式2
+.text-ellipsis_line_1 {
+	@include text-ellipsis_line();
+}
+
+// 公用path页面外壳
+.column-page-wrap {
+	flex: 1;
+	display: flex;
+	height: 100%;
+	flex-direction: column;
+	min-height: 0;
+}
+
+/*.part-title {
+	color: #000;
+	font-size: 32px;
+	font-weight: 600;
+	line-height: normal;
+	text-align: center;
+	padding-top: 60px;
+	padding-bottom: 24px;
+}*/
+
+/*.el-button {
+	//--el-color-primary: #3054E5;
+	--el-color-primary: var(--link-color);
+	--el-color-primary-light-3: var(--link-color-3);
+	//height: 34px !important;
+	height: 34px;
+}*/
+/*
+.transform {
+	transform: translate(var(--tw-translate-x),var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y));
+}*/
+
+/*.sign-bar	{
+	position: relative;
+	width: 100%;
+	height: px2vw(128px);
+	margin-top: px2vw(60px);
+	background: url('@/assets/image/sign_bar_blue.webp') no-repeat top center;
+	background-size: 100% 100%;
+	padding: px2vw(18px) 0;
+	.box {
+		margin: 0 auto;
+		display: flex;
+		//flex-direction: column;
+		align-items: center;
+		justify-content: space-between;
+		width: px2vw(922px);
+		height: px2vw(92px);
+		padding: 0 px2vw(80px);
+		border-radius: px2vw(6px) px2vw(30px);
+		//opacity: 0.75;
+		//background: #0A166D;
+		background: rgba(10, 22, 109, 0.75);
+	}
+	.desc {
+		color: #fff;
+		text-align: center;
+		font-size: px2vw(24px);
+		font-weight: 600;
+	}
+	.btn {
+		//position: absolute;
+		//top: px2vw(40px);
+		//right: px2vw(339px);
+		width: px2vw(216px);
+		height: px2vw(48px);
+		border-radius: px2vw(6px);
+		font-size: px2vw(20px);
+		border-color: transparent;
+		font-weight: 700;
+		text-transform: capitalize;
+		color: #0A166D;
+	}
+	&--blue {}
+	&--green {
+		background-image: url('@/assets/image/sign_bar_green.webp');
+		.box {
+			//opacity: 0.75;
+			//background: #2D5702;
+			background: rgba(45, 87, 2, 0.75);
+		}
+		.btn {
+			color: #2D5702;
+		}
+	}
+	&--red {
+		background-image: url('@/assets/image/sign_bar_red.webp');
+		.box {
+			//opacity: 0.75;
+			//background: #7A0826;
+			background: rgba(122, 8, 38, 0.75);
+		}
+		.btn {
+			color: #7A0826;
+		}
+	}
+	&--yellow {
+		background-image: url('@/assets/image/sign_bar_yellow.webp');
+		.box {
+			//opacity: 0.75;
+			//background: #785800;
+			background: rgba(120, 88, 0, 0.75);
+		}
+		.btn {
+			color: #785800;
+		}
+	}
+}*/

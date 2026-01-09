@@ -1,11 +1,11 @@
-import Tailwind from "@tailwindcss/vite";
+import tailwindcss from "@tailwindcss/vite";
 
 // https://nuxt.com/docs/api/configuration/nuxt-config
 export default defineNuxtConfig({
   devtools: {
     enabled: true,
   },
-  compatibilityDate: "2025-07-15",
+  compatibilityDate: "2026-01-08",
   modules: [
     "@nuxt/eslint",
     "reka-ui/nuxt",
@@ -15,9 +15,16 @@ export default defineNuxtConfig({
     "nuxt-security",
     "@vueuse/nuxt",
   ],
-  css: ["~/assets/css/main.css"],
+  css: ["~/assets/styles/main.css", "~/assets/styles/index.scss"],
   vite: {
-    plugins: [Tailwind()],
+    css: {
+      preprocessorOptions: {
+        scss: {
+          additionalData: '@use "@/assets/styles/variables.scss" as *;',
+        },
+      },
+    },
+    plugins: [tailwindcss()],
   },
   fonts: {
     experimental: {

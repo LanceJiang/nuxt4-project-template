@@ -1,0 +1,56 @@
+@use 'sass:math';
+
+// 根元素大小
+$rootValue: 14;
+$topHeader: 90px;
+
+@mixin text-ellipsis_line($number: 1) {
+	white-space: normal;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	display: -webkit-box;
+	-webkit-line-clamp: $number;
+	line-clamp: $number;
+	-webkit-box-orient: vertical;
+	word-break: break-all;
+}
+
+// 写一个自定义函数，让 px 换算 rem 时，可以控制小数点的位数，要不计算出来太长了
+// 第一个参数为需要处理的数值，第二个为小数点后取几位数
+@function decimalRound($number, $digits: 0) {
+	$n: 1;
+	@if type-of($number) != number {
+		@warn '#{ $number } is not a number.';
+		@return $number;
+	}
+	@if type-of($digits) != number {
+		@warn '#{ $digits } is not a number.';
+		@return $number;
+		// digits 不能带单位
+	} @else if not unitless($digits) {
+		@warn '#{ $digits } has a unit.';
+		@return $number;
+	}
+	@if $digits > 0 {
+		@for $i from 1 through $digits {
+			$n: $n * 10;
+		}
+	}
+	@return calc(round($number * $n) / $n);
+}
+
+@function torem($px) {
+	@return decimalRound(math.div($px, $rootValue), 3) * 1rem;
+}
+
+// pc端兼容
+$design-width: 1440px;
+@function px2vw($px) {
+	@return math.div($px, $design-width) * 100vw;
+}
+
+// 手机端兼容
+$mobile-width: 375px;
+@function mx2vw($px) {
+	@return math.div($px, $mobile-width) * 100vw;
+}
