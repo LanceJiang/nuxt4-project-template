@@ -5,8 +5,13 @@ export default defineNuxtConfig({
   devtools: {
     enabled: true,
   },
+  devServer: {
+    port: 4000,
+  },
   compatibilityDate: "2026-01-08",
   modules: [
+    "@pinia/nuxt",
+    "pinia-plugin-persistedstate/nuxt",
     "@nuxt/eslint",
     "reka-ui/nuxt",
     "@nuxt/icon",
