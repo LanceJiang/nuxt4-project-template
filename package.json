@@ -5,14 +5,13 @@
   "scripts": {
     "build": "nuxt build",
     "dev": "nuxt dev",
-    "lint": "npx stylelint ./app/assets/css/**/*.css --fix && npx stylelint ./app/{components,pages,layouts}/**/*.vue --fix && eslint . --fix",
+    "lint": "npx stylelint ./app/assets/styles/**/*.css --fix && npx stylelint ./app/{components,pages,layouts}/**/*.vue --fix && eslint . --fix",
     "postinstall": "nuxt prepare",
     "typecheck": "npx nuxi typecheck .",
     "prepare": "husky"
   },
   "lint-staged": {
     "*.{vue,ts,mjs,css}": [
-      "npm run lint",
       "npm run typecheck"
     ]
   },
